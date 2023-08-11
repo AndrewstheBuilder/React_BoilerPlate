@@ -1,0 +1,77 @@
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
+export function CustomAutocomplete(props) {
+  return (
+    <Autocomplete
+      options={props.options}
+      getOptionLabel={(option) => option.title}
+      renderInput={(params) => <TextField {...params} label={props.label || 'Title'} variant="outlined" />}
+    />
+  );
+}
+
+import TextField from '@mui/material/TextField';
+
+export function CustomTextInput(props) {
+  return (
+    <div>
+      <h4>{props.subtitle}</h4>
+      <TextField label={props.label || 'Label'} variant="outlined" fullWidth />
+    </div>
+  );
+}
+
+import React from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import DatePicker from '@mui/lab/DatePicker';
+import { CustomTextInput, CustomAutocomplete } from './ReusableComponents'; // Assuming the reusable components are in ReusableComponents.js
+
+export function BenefitPackageModal({ open, onCancel }) {
+  return (
+    <Dialog open={open} onClose={onCancel} maxWidth="md">
+      <DialogTitle>Create a new Benefit Package/Template</DialogTitle>
+      <DialogContent>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <CustomTextInput subtitle="Subtitle 1" />
+          </Grid>
+          <Grid item xs={6}>
+            <CustomTextInput subtitle="Subtitle 2" />
+          </Grid>
+          <Grid item xs={6}>
+            <CustomAutocomplete label="Autocomplete 1" options={/* Your Options Here */} />
+          </Grid>
+          <Grid item xs={6}>
+            <CustomAutocomplete label="Autocomplete 2" options={/* Your Options Here */} />
+          </Grid>
+          <Grid item xs={6}>
+            <DatePicker
+              label="Date Picker"
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <CustomAutocomplete label="Autocomplete 3" options={/* Your Options Here */} />
+          </Grid>
+          <Grid item xs={6}>
+            <CustomAutocomplete label="Autocomplete 4" options={/* Your Options Here */} />
+          </Grid>
+          <Grid item xs={6}>
+            <CustomAutocomplete label="Autocomplete 5" options={/* Your Options Here */} />
+          </Grid>
+        </Grid>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onCancel} color="primary">Cancel</Button>
+        <Button onClick={/* Your Create onClick here */} color="primary">Create</Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
