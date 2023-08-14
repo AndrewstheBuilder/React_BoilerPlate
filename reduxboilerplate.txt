@@ -1,0 +1,41 @@
+const initialState = {
+  subtypes: { loading: false, data: null, error: null },
+  segments: { loading: false, data: null, error: null },
+  products: { loading: false, data: null, error: null },
+  productClasses: { loading: false, data: null, error: null },
+};
+
+export const staticDataReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_SUBTYPES_REQUEST:
+      return { ...state, subtypes: { loading: true, data: null, error: null } };
+    case FETCH_SUBTYPES_SUCCESS:
+      return { ...state, subtypes: { loading: false, data: action.payload, error: null } };
+    case FETCH_SUBTYPES_FAILURE:
+      return { ...state, subtypes: { loading: false, data: null, error: action.payload } };
+
+    case FETCH_SEGMENTS_REQUEST:
+      return { ...state, segments: { loading: true, data: null, error: null } };
+    case FETCH_SEGMENTS_SUCCESS:
+      return { ...state, segments: { loading: false, data: action.payload, error: null } };
+    case FETCH_SEGMENTS_FAILURE:
+      return { ...state, segments: { loading: false, data: null, error: action.payload } };
+
+    case FETCH_PRODUCTS_REQUEST:
+      return { ...state, products: { loading: true, data: null, error: null } };
+    case FETCH_PRODUCTS_SUCCESS:
+      return { ...state, products: { loading: false, data: action.payload, error: null } };
+    case FETCH_PRODUCTS_FAILURE:
+      return { ...state, products: { loading: false, data: null, error: action.payload } };
+
+    case FETCH_PRODUCT_CLASSES_REQUEST:
+      return { ...state, productClasses: { loading: true, data: null, error: null } };
+    case FETCH_PRODUCT_CLASSES_SUCCESS:
+      return { ...state, productClasses: { loading: false, data: action.payload, error: null } };
+    case FETCH_PRODUCT_CLASSES_FAILURE:
+      return { ...state, productClasses: { loading: false, data: null, error: action.payload } };
+
+    default:
+      return state;
+  }
+};
